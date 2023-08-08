@@ -1,0 +1,28 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+header h1{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  color: white;
+}
+header{
+  padding: 50px;
+  background-color: rgb(33, 36, 33);
+  box-shadow: 0 0 1em ;
+}
+p{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+footer{
+  position: relative;
+  bottom: 0;
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+input{
+width: 300px;
+}
+

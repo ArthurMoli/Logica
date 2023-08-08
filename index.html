@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <title>Criptografia On-line</title>
+</head>
+<body>
+  <header>
+    <h1>Criptografia</h1>
+  </header>
+  <br>
+  <br>
+  <p>A criptografia é muito importante nos dias de hoje, onde somos tão dependentes de senhas seguras para proteção de nossos dados.</p>
+  <p>Para solucionar o desafio do slide, desenvolvi essa apresentação interativa que criptografa o texto que você precisar!</p>
+<br>
+<p>Experimente abaixo!</p>
+<br>
+  <input type="text" id="originalText" placeholder="Digite seu texto aqui!"><br><br>
+  <button type="button" onclick="encryptText()">Criptografar</button>
+  <br><br>
+  <input type="text" id="encryptedText" readonly/>
+  <button type="button" onclick="copyToClipboard('encryptedText')">Copiar</button>
+  <p>Texto criptografado:</p>
+  <br>
+  <input type="text" id="decryptedText" readonly/>
+  <button type="button" onclick="copyToClipboard('decryptedText')">Copiar</button>
+  <p>Texto descriptografado:</p>
+  <br>
+  <br>
+  <br>
+  <p>Por que não experimenta <b>"ESTUDAR PARA TRANSFORMAR
+    O MUNDO!"</b>?!</p>
+    <br>
+    <br>
+<footer><h2>Desenvolvido por Arthur Maciel Oliveira©</h2></footer>
+<script>
+  const charToNumber = {
+    'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5,
+    'F': 6, 'G': 7, 'H': 8, 'I': 9, 'J': 10,
+    'K': 11, 'L': 12, 'M': 13, 'N': 14, 'O': 15,
+    'P': 16, 'Q': 17, 'R': 18, 'S': 19, 'T': 20,
+    'U': 21, 'V': 22, 'W': 23, 'X': 24, 'Y': 25,
+    'Z': 26, '.': 27, ',': 28, '!': 29, '?': 30,
+    ' ': 31
+  };
+
+  const numberToChar = Object.fromEntries(
+    Object.entries(charToNumber).map(([char, num]) => [num, char])
+  );
+
+  function encryptText() {
+    const originalInput = document.getElementById('originalText').value.toUpperCase();
+    const encryptedInput = document.getElementById('encryptedText');
+    const decryptedInput = document.getElementById('decryptedText');
+    const encryptedMessage = encrypt(originalInput);
+    encryptedInput.value = encryptedMessage;
+    const decryptedMessage = decrypt(encryptedMessage);
+    decryptedInput.value = decryptedMessage;
+  }
+
+  function encrypt(message) {
+    const encrypted = [];
+    for (const char of message) {
+      const number = charToNumber[char];
+      if (number !== undefined) {
+        encrypted.push(number);
+      }
+    }
+    return encrypted.join(' ');
+  }
+
+  function decrypt(encryptedMessage) {
+    const encryptedNumbers = encryptedMessage.split(' ').map(Number);
+    const decrypted = [];
+    for (const num of encryptedNumbers) {
+      const char = numberToChar[num];
+      if (char !== undefined) {
+        decrypted.push(char);
+      }
+    }
+    return decrypted.join('');
+  }
+
+  function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    element.select();
+    document.execCommand('copy');
+    alert('Texto copiado para a área de transferência!');
+  }
+</script>
+</body>
+</html>
